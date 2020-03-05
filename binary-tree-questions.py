@@ -46,3 +46,29 @@ for ll in linked_lists:
         print(current)
         current = current.next
     print()
+
+print()
+
+def level_recursively(node):
+    level = 1
+    lists = []
+    def level_recursively_(node, level, lists):
+        if node == None:
+            return
+        if len(lists) != level:
+            ll = LinkedList()
+            lists.append(ll)
+        lists[level-1].append(node)
+        level_recursively_(node.left, level+1, lists)
+        level_recursively_(node.right, level+1, lists)
+        return lists
+    return level_recursively_(node, level, lists)
+
+linked_lists_rec = level_recursively(ten)
+
+for ll in linked_lists_rec:
+    current = ll.head
+    while current:
+        print(current)
+        current = current.next
+    print()
