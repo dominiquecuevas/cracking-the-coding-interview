@@ -22,16 +22,16 @@ def levels_linked_list_of_nodes(node):
     of all the nodes at each depth"""
     if not node:
         return
-    queue = [(node, 1)]
+    stack = [(node, 1)]
     linked_lists = {}
-    while queue:
-        current, depth = queue.pop(0)
+    while stack:
+        current, depth = stack.pop()
         linked_lists[depth] = linked_lists.get(depth, LinkedList())
         linked_lists[depth].append(current)
         if current.left:
-            queue.append((current.left, depth+1))
+            stack.append((current.left, depth+1))
         if current.right:
-            queue.append((current.right, depth+1))
+            stack.append((current.right, depth+1))
     return linked_lists
 
 linked_lists = levels_linked_list_of_nodes(ten)
